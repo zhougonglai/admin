@@ -1,0 +1,11 @@
+{
+  "/mock/5cbd107d08c37e59eb3df85f/api": {
+    "target": "https://www.easy-mock.com",
+    "changeOrigin": true
+  },
+  "/mongodb-api": {
+    "target": "https://mongodb-api.zhougonglai.now.sh",
+    "pathRewrite": { "^/mongodb-api": "" },
+    "changeOrigin": true
+  }
+}

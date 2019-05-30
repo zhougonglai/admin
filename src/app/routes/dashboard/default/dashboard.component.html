@@ -1,0 +1,167 @@
+<div class="alain-default__content-title">
+  <h1>
+    仪表盘
+    <small>{{ today }}</small>
+  </h1>
+</div>
+<div nz-row [nzGutter]="16">
+  <div nz-col nzXs="24" nzSm="12" nzMd="6" class="mb-md">
+    <div nz-row nzType="flex" nzAlign="middle" class="border border-primary bg-primary-light rounded-md">
+      <div nz-col nzSpan="12" class="p-md text-blue-1">
+        <div class="h2 mt0">{{ uv?.today }}</div>
+        <p class="text-nowrap mb0">
+          UV
+          <i nz-icon *ngIf="uv?.today > uv?.yesterday" nzType="caret-up" nzTheme="fill" class="text-red"></i>
+          <i nz-icon *ngIf="uv?.today < uv?.yesterday" nzType="caret-down" nzTheme="fill" class="text-green"></i>
+          <small>昨日: {{ uv?.yesterday }}</small>
+        </p>
+      </div>
+      <div nz-col nzSpan="12">
+        <g2-mini-bar
+          *ngIf="webSite"
+          height="35"
+          color="#f5f5f5"
+          borderWidth="3"
+          [padding]="[36, 30, 30, 30]"
+          [data]="webSite"
+          tooltipType="mini"
+        ></g2-mini-bar>
+      </div>
+    </div>
+  </div>
+  <div nz-col nzXs="24" nzSm="12" nzMd="6" class="mb-md">
+    <div nz-row nzType="flex" nzAlign="middle" class="border border-cyan bg-cyan-light rounded-md">
+      <div nz-col nzSpan="12" class="p-md text-cyan-1">
+        <div class="h2 mt0">{{ pv?.today }}</div>
+        <p class="text-nowrap mb0">
+          PV
+          <i nz-icon *ngIf="pv?.today > pv?.yesterday" nzType="caret-up" nzTheme="fill" class="text-red"></i>
+          <i nz-icon *ngIf="pv?.today < pv?.yesterday" nzType="caret-down" nzTheme="fill" class="text-green"></i>
+          <small>昨日: {{ pv?.yesterday }}</small>
+        </p>
+      </div>
+      <div nz-col nzSpan="12">
+        <g2-mini-bar
+          *ngIf="webSite"
+          height="35"
+          color="#f5f5f5"
+          borderWidth="3"
+          [padding]="[36, 30, 30, 30]"
+          [data]="webSite"
+          tooltipType="mini"
+        ></g2-mini-bar>
+      </div>
+    </div>
+  </div>
+  <div nz-col nzXs="24" nzSm="12" nzMd="6" class="mb-md">
+    <div nz-row nzType="flex" nzAlign="middle" class="border border-orange bg-orange-light rounded-md">
+      <div nz-col nzSpan="12" class="p-md text-orange-1">
+        <div class="h2 mt0">{{ vv?.today }}</div>
+        <p class="text-nowrap mb0">
+          VV
+          <i nz-icon *ngIf="vv?.today > vv?.yesterday" nzType="caret-up" nzTheme="fill" class="text-red"></i>
+          <i nz-icon *ngIf="vv?.today < vv?.yesterday" nzType="caret-down" nzTheme="fill" class="text-green"></i>
+          <small>昨日: {{ vv?.yesterday }}</small>
+        </p>
+      </div>
+      <div nz-col nzSpan="12">
+        <g2-mini-bar
+          *ngIf="webSite"
+          height="35"
+          color="#f5f5f5"
+          borderWidth="3"
+          [padding]="[36, 30, 30, 30]"
+          [data]="webSite"
+          tooltipType="mini"
+        ></g2-mini-bar>
+      </div>
+    </div>
+  </div>
+  <div nz-col nzXs="24" nzSm="12" nzMd="6" class="mb-md">
+    <div nz-row nzType="flex" nzAlign="middle" class="border border-purple bg-purple-light rounded-md">
+      <div nz-col nzSpan="12" class="p-md text-purple-1">
+        <div class="h2 mt0">{{ cv?.today }}</div>
+        <p class="text-nowrap mb0">
+          CV
+          <i nz-icon *ngIf="cv?.today > cv?.yesterday" nzType="caret-up" nzTheme="fill" class="text-red"></i>
+          <i nz-icon *ngIf="cv?.today < cv?.yesterday" nzType="caret-down" nzTheme="fill" class="text-green"></i>
+          <small>昨日: {{ cv?.yesterday }}</small>
+        </p>
+      </div>
+      <div nz-col nzSpan="12">
+        <g2-mini-bar
+          *ngIf="webSite"
+          height="35"
+          color="#f5f5f5"
+          borderWidth="3"
+          [padding]="[36, 30, 30, 30]"
+          [data]="webSite"
+          tooltipType="mini"
+        ></g2-mini-bar>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div nz-row nzGutter="16">
+  <div nz-col nzXs="24" nzMd="12">
+    <nz-card [nzBordered]="false" [nzTitle]="salesTitle">
+      <ng-template #salesTitle>
+        月活量
+        <small class="text-sm font-weight-normal">2018年度活跃量</small>
+      </ng-template>
+      <g2-bar *ngIf="salesData" height="275" [data]="salesData"></g2-bar>
+    </nz-card>
+  </div>
+  <div nz-col nzXs="24" nzMd="12">
+    <nz-card [nzTitle]="growthTitle" [nzBordered]="false">
+      <ng-template #growthTitle>
+        消费指数
+        <small class="text-sm font-weight-normal">{{ today }}消费指数详情</small>
+      </ng-template>
+      <g2-timeline
+        *ngIf="offlineChartData"
+        [data]="offlineChartData"
+        [height]="239"
+        [padding]="[0, 0, 0, 0]"
+        [titleMap]="{ y1: '客流量', y2: '支付笔数' }"
+      ></g2-timeline>
+    </nz-card>
+  </div>
+</div>
+
+<div nz-row nzGutter="16">
+  <div nz-col nzXs="24" nzMd="12">
+    <nz-card nzTitle="新闻公告" [nzBordered]="false">
+      <div nz-row *ngFor="let item of news" class="p-sm bg-grey-lighter-h point">
+        <div nz-col [nzSpan]="20">{{ item.title }}</div>
+        <div nz-col [nzSpan]="4" class="text-right">[{{ item.date }}]</div>
+      </div>
+    </nz-card>
+  </div>
+  <div nz-col nzXs="24" nzMd="12">
+    <nz-card nzTitle="任务清单" [nzBordered]="false">
+      <nz-list [nzDataSource]="todoList" [nzRenderItem]="item">
+        <ng-template #item let-item>
+          <nz-list-item [nzActions]="[actions]">
+            <nz-list-item-meta [nzTitle]="item.name" [nzAvatar]="item.avatar" [nzDescription]="description">
+              <ng-template #description>
+                <p [class.text-deleted]="item.completed" class="mb0">{{ item.content }}</p>
+              </ng-template>
+            </nz-list-item-meta>
+            <ng-template #actions>
+              <nz-dropdown [nzPlacement]="'topRight'">
+                <i nz-dropdown nz-icon nzType="ellipsis" class="rotate-90"></i>
+                <ul nz-menu>
+                  <li nz-menu-item *ngIf="item.completed" (click)="item.completed = false">重置</li>
+                  <li nz-menu-item *ngIf="!item.completed" (click)="item.completed = true">完成</li>
+                  <li nz-menu-item>删除</li>
+                </ul>
+              </nz-dropdown>
+            </ng-template>
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
+    </nz-card>
+  </div>
+</div>
