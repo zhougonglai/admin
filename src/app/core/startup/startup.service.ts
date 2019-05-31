@@ -31,7 +31,7 @@ export class StartupService {
 
   private viaHttp(resolve: any, reject: any) {
     zip(
-      this.httpClient.get('assets/tmp/app-data.json'),
+      this.httpClient.get(`${environment.MOCK_URL}/app`),
       this.httpClient.get(`${environment.MOCK_URL}/auth/user`),
       this.httpClient.get(`${environment.MOCK_URL}/auth/menu`),
     )
