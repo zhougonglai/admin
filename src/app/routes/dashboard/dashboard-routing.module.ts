@@ -6,6 +6,7 @@ import { DashboardAnalysisViewComponent } from './analysis/view/view.component';
 import { DashboardComponent } from './default/dashboard.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'default', pathMatch: 'full' },
   { path: 'default', component: DashboardComponent },
   {
     path: 'analysis',
