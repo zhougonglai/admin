@@ -18,7 +18,7 @@ const routes: Routes = [
     component: LayoutDefaultComponent,
     canActivate: [SimpleGuard],
     children: [
-      { path: 'dashboard', redirectTo: 'dashboard' },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
         loadChildren: './dashboard/dashboard.module#DashboardModule',
@@ -49,10 +49,10 @@ const routes: Routes = [
       },
     ],
   },
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   // 单页不包裹Layout
   { path: 'callback/:type', component: CallbackComponent },
-  { path: '**', redirectTo: 'exception/404' },
+  // { path: '**', redirectTo: 'exception/404' },
+  { path: '**', redirectTo: 'dashboard' },
 ];
 
 @NgModule({
