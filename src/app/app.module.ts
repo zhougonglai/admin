@@ -24,6 +24,7 @@ import { DelonModule } from './delon.module';
 import { LayoutModule } from './layout/layout.module';
 import { RoutesModule } from './routes/routes.module';
 import { SharedModule } from './shared/shared.module';
+import { GraphQLModule } from './graphql.module';
 
 const LANG = {
   abbr: 'zh',
@@ -72,6 +73,7 @@ const APPINIT_PROVIDES = [
     RoutesModule,
     ...FORM_MODULES,
     ...GLOBAL_THIRD_MODULES,
+    GraphQLModule,
   ],
   providers: [...LANG_PROVIDES, ...INTERCEPTOR_PROVIDES, ...APPINIT_PROVIDES],
   bootstrap: [AppComponent],

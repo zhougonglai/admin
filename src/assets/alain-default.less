@@ -23741,6 +23741,23 @@ body {
 }
 
 /* You can add global styles to this file, and also import other style files */
+.row{
+  display: flex;
+  .col{
+    flex: 1;
+  }
+  .grow{
+    flex-grow: 1;
+  }
+  .shrink{
+    flex-basis: 0;
+  }
+}
+
+.icon{
+  width: 14px;
+  height: 14px;
+}
 
 // 可以通过 https://ng-alain.github.io/ng-alain/ 获取主题参数代码
 // The theme paraments can be generated at https://ng-alain.github.io/ng-alain/

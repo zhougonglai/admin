@@ -7,9 +7,6 @@ import { LayoutDefaultComponent } from '../layout/default/default.component';
 import { LayoutPassportComponent } from '../layout/passport/passport.component';
 // single pages
 import { CallbackComponent } from './callback/callback.component';
-// dashboard pages
-import { DashboardComponent } from './dashboard/default/dashboard.component';
-import { UserLockComponent } from './passport/lock/lock.component';
 // passport pages
 import { UserLoginComponent } from './passport/login/login.component';
 import { UserRegisterResultComponent } from './passport/register-result/register-result.component';
@@ -22,7 +19,11 @@ const routes: Routes = [
     canActivate: [SimpleGuard],
     children: [
       { path: '', redirectTo: 'dashboard/default', pathMatch: 'full' },
-      { path: 'dashboard/default', component: DashboardComponent },
+      {
+        path: 'dashboard',
+        loadChildren: './dashboard/dashboard.module#DashboardModule',
+        data: { title: '工作台' },
+      },
       { path: 'sys', loadChildren: './sys/sys.module#SysModule' },
       { path: 'exception', loadChildren: './exception/exception.module#ExceptionModule' },
     ],
@@ -46,7 +47,6 @@ const routes: Routes = [
         component: UserRegisterResultComponent,
         data: { title: '注册结果', titleI18n: 'pro-register-result' },
       },
-      { path: 'lock', component: UserLockComponent, data: { title: '锁屏', titleI18n: 'lock' } },
     ],
   },
   // 单页不包裹Layout

@@ -1,0 +1,66 @@
+<nz-page-header (nzBack)="onBack()" [nzBackIcon]="nzBackIcon" [nzTitle]="'发射编号:' + (launch$ | async)?.id">
+  <ng-template #nzBackIcon>
+    <svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-rollback"></use>
+    </svg>
+  </ng-template>
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item>
+      <a [routerLink]="['/dashboard/analysis']">
+        火箭列表
+      </a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>{{ (launch$ | async)?.id }} 号 🚀</nz-breadcrumb-item>
+  </nz-breadcrumb>
+  <nz-page-header-content>
+    <div class="wrap">
+      <div nz-row class="content padding">
+        <div nz-col nzSpan="12">
+          <div class="description">
+            <span class="term">发射编号:</span>
+            <p class="detail">{{ (launch$ | async)?.id }}</p>
+          </div>
+        </div>
+        <div nz-col nzSpan="12">
+          <div class="description">
+            <span class="term">发射日期: </span>
+            <p class="detail">{{ (launch$ | async)?.cursor * 1000 | _date: 'YYYY年MM月DD日' }}</p>
+          </div>
+        </div>
+        <div nz-col nzSpan="12">
+          <div class="description">
+            <span class="term">发射网址: </span>
+            <p class="detail">{{ (launch$ | async)?.site }}</p>
+          </div>
+        </div>
+        <div nz-col nzSpan="12">
+          <div class="description">
+            <span class="term">任务: </span>
+            <p class="detail">{{ (launch$ | async)?.mission.name }}</p>
+          </div>
+        </div>
+        <div nz-col nzSpan="12">
+          <div class="description">
+            <span class="term">火箭编号: </span>
+            <p class="detail">{{ (launch$ | async)?.rocket.id }}</p>
+          </div>
+        </div>
+        <div nz-col nzSpan="12">
+          <div class="description">
+            <span class="term">火箭命名: </span>
+            <p class="detail">{{ (launch$ | async)?.rocket.name }}</p>
+          </div>
+        </div>
+        <div nz-col nzSpan="12">
+          <div class="description">
+            <span class="term">火箭类型: </span>
+            <p class="detail">{{ (launch$ | async)?.rocket.type }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="extra-content">
+        <img [alt]="(launch$ | async)?.mission.name" [src]="(launch$ | async)?.mission.missionPatchLarge" />
+      </div>
+    </div>
+  </nz-page-header-content>
+</nz-page-header>

@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { _HttpClient, ModalHelper } from '@delon/theme';
 import { STColumn, STComponent } from '@delon/abc';
 import { SFSchema } from '@delon/form';
+import { ModalHelper, _HttpClient } from '@delon/theme';
+import { SysLogViewComponent } from './view/view.component';
 
 @Component({
   selector: 'app-sys-log',
@@ -13,9 +14,9 @@ export class SysLogComponent implements OnInit {
     properties: {
       no: {
         type: 'string',
-        title: '编号'
-      }
-    }
+        title: '编号',
+      },
+    },
   };
   @ViewChild('st') st: STComponent;
   columns: STColumn[] = [
@@ -26,20 +27,26 @@ export class SysLogComponent implements OnInit {
     {
       title: '',
       buttons: [
-        // { text: '查看', click: (item: any) => `/form/${item.id}` },
+        {
+          text: '查看',
+          type: 'modal',
+          modal: {
+            component: SysLogViewComponent,
+          },
+          click: (item: any) => `/view/${item.id}`,
+        },
         // { text: '编辑', type: 'static', component: FormEditComponent, click: 'reload' },
-      ]
-    }
+      ],
+    },
   ];
 
-  constructor(private http: _HttpClient, private modal: ModalHelper) { }
+  constructor(private http: _HttpClient, private modal: ModalHelper) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   add() {
     // this.modal
     //   .createStatic(FormEditComponent, { i: { id: 0 } })
     //   .subscribe(() => this.st.reload());
   }
-
 }

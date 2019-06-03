@@ -1,0 +1,47 @@
+<div nz-row nzGutter="16">
+  <div nz-col>
+    <nz-card nzTitle="🚀发射记录" [nzBordered]="false" [nzExtra]="extraTemplate" [nzLoading]="launcheState.loading">
+      <ng-template #extraTemplate>
+        <nz-button-group>
+          <button
+            nz-button
+            nzType="primary"
+            [disabled]="!launcheState.pageIndex || launcheState.loading"
+            (click)="prevPage()"
+          >
+            <i nz-icon type="left"></i>
+          </button>
+          <button
+            nz-button
+            nzType="primary"
+            [disabled]="(launches | async)?.length < launcheState.pageSize || launcheState.loading"
+            (click)="nextPage()"
+          >
+            <i nz-icon type="right"></i>
+          </button>
+        </nz-button-group>
+      </ng-template>
+      <div nz-row class="border-grey-bottom">
+        <div nz-col [nzSpan]="4" class="text-center">发射编号</div>
+        <div nz-col [nzSpan]="8" class="text-center">网站</div>
+        <div nz-col [nzSpan]="8" class="text-center">日期</div>
+        <div nz-col [nzSpan]="2" class="text-center">成功/失败</div>
+        <div nz-col [nzSpan]="2" class="text-center">详情</div>
+      </div>
+      <div nz-row *ngFor="let launch of launches | async" class="py-sm">
+        <div nz-col [nzSpan]="4" class="text-center">{{ launch.id }}</div>
+        <div nz-col [nzSpan]="8" class="text-center">{{ launch.site }}</div>
+        <div nz-col [nzSpan]="8" class="text-center">{{ launch.cursor * 1000 | _date: 'YYYY年MM月DD日' }}</div>
+        <div nz-col [nzSpan]="2" class="text-center">
+          <i *ngIf="launch.success" nz-icon nzType="check" class="text-success" nzTheme="outline"></i>
+          <i *ngIf="!launch.success" nz-icon nzType="close" class="text-error" nzTheme="outline"></i>
+        </div>
+        <div nz-col [nzSpan]="2" class="text-center">
+          <a [routerLink]="['/dashboard/analysis/detail/', launch.id]">
+            <i nz-icon nzType="right" nzTheme="outline"></i>
+          </a>
+        </div>
+      </div>
+    </nz-card>
+  </div>
+</div>
