@@ -18,7 +18,6 @@ const routes: Routes = [
     component: LayoutDefaultComponent,
     canActivate: [SimpleGuard],
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', redirectTo: 'dashboard' },
       {
         path: 'dashboard',
@@ -50,6 +49,7 @@ const routes: Routes = [
       },
     ],
   },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   // 单页不包裹Layout
   { path: 'callback/:type', component: CallbackComponent },
   { path: '**', redirectTo: 'exception/404' },
