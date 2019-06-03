@@ -11,11 +11,12 @@ const routes: Routes = [
   {
     path: 'analysis',
     component: DashboardAnalysisAnalysisComponent,
+    data: { title: 'apollo API' },
     children: [
       {
         path: '',
         component: DashboardAnalysisViewComponent,
-        data: { title: 'apollo API' },
+        data: { title: '默认页' },
       },
       {
         path: 'detail/:id',
