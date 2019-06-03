@@ -19,6 +19,7 @@ const routes: Routes = [
     canActivate: [SimpleGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', redirectTo: 'dashboard' },
       {
         path: 'dashboard',
         loadChildren: './dashboard/dashboard.module#DashboardModule',
